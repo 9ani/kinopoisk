@@ -42,32 +42,39 @@
                
                
                 <h3>Сохраненные фильмы</h3>
-                <div class="main-card">
-                    <div class="card-left">
-                        <div class="film-img">
-                            <img src="/images/films/film1.webp" alt="" srcset="">
-                        </div>
-                        <div class="film-info">
-                            <a href="">Все везде и сразу</a>
-                            <a href="">Everything Everywhere All at Once, 2021, 139 мин</a>
-                            <a href="">США, Фантастика</a>
-                            <button class="film-btn">
-                                <img src="/images/icons/play.svg" alt="" srcset="">
-                                Смотреть
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <div class="film-rate">
-                            <p>7.3</p>
-                        </div>
-                        <button class="film-btn">
-                            <img src="/images/icons/save.svg" alt="" srcset="">
-                            Буду смотреть
-                        </button>
-                    </div>
+                <% if(user.toWatch.length > 0){
+                        user.toWatch.forEach  (film =>{  
+                %>
+                        <div class="main-card">
+                            <div class="card-left">
+                                <div class="film-img">
+                                    <img src="<%= film.image %>" alt="" srcset="">
+                                </div>
+                                <div class="film-info">
+                                    <a href=""><%= film.titleRus %></a>
+                                    <a href=""><%= film.titleEng %>, <%= film.year %>, <%= film.time %> мин</a>
+                                    <a href=""><%= film.country.name %>, <%= film.genre.name %></a>
+                                    <button class="film-btn">
+                                        <img src="/images/icons/play.svg" alt="" srcset="">
+                                        Смотреть
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-right">
+                                <div class="film-rate">
+                                    <p>7.3</p>
+                                </div>
+                                <button class="film-btn">
+                                    <img src="/images/icons/saved.webp" alt="" srcset="">
+                                    Сохранено
+                                </button>
+                            </div>
 
-                </div>
+                        </div>
+                <%
+                    }) 
+                } %>    
+                
             </div>
         </div>
     </div>
