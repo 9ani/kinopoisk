@@ -44,7 +44,7 @@
                         <% 
                             if(user.toWatch && user.toWatch.includes(item._id)){
                          %>
-                                <button class="film-btn" onclick="saveToWatch('<%= item._id %>')">
+                                <button class="film-btn" onclick="deleteFromToWatch('<%= item._id %>')">
                                     <img src="./images/icons/saved.webp" alt="" srcset="">
                                     Сохранено
                                 </button>
