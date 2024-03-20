@@ -13,7 +13,7 @@
                 <h3>Жанры</h3>
                 <% genres.forEach(genre => {
                     %>
-                    <a href="/<%= genre.key %>"><%= genre.name%></a>
+                    <a href="?genre=<%= genre.key %>"><%= genre.name%></a>
                     <%
                 })%>
             </div>
@@ -28,9 +28,9 @@
                             <img src="<%= item.image %>" alt="" srcset="">
                         </div>
                         <div class="film-info">
-                            <a href=""><%= item.titleRus %></a>
-                            <a href=""><%= item.titleEng %>, <%= item.year %>, <%= item.time %> мин</a>
-                            <a href=""><%= item.country.name %>, <%= item.genre.name %></a>
+                            <a href="/detail/<%= item._id %>"><%= item.titleRus %></a>
+                            <a href="/detail/<%= item._id %>"><%= item.titleEng %>, <%= item.year %>, <%= item.time %> мин</a>
+                            <a href="/detail/<%= item._id %>"><%= item.country.name %>, <%= item.genre.name %></a>
                             <button class="film-btn">
                                 <img src="./images/icons/play.svg" alt="" srcset="">
                                 Смотреть
@@ -64,7 +64,23 @@
                 })
 
                 %>
-                
+                <div class="pages">
+                    <%
+                        let localsString = ''
+                        if(locals.genre){
+                            localsString = `genre=${locals.genre}&`
+                        }
+                        if(locals.search){
+                            localsString = `search=${locals.search}&`
+
+                        }
+                        for(let i =0; i < pages;i++){
+                    %>
+                            <a href="?<%=localsString%>page=<%=i%>"><%= i+1 %></a>
+                    <%
+                        } 
+                     %>
+                </div>
             </div>
         </div>
     </div>
