@@ -15,7 +15,7 @@
                     <h2><%= film.titleRus %> (<%= film.year %>)</h2>
                     <p><%= film.titleEng %></p>
                     <% 
-                            if( user.toWatch.includes(film._id)){
+                            if( user&& user.toWatch&&  user.toWatch.includes(film._id)){
                     %>
                         <button class="film-btn" onclick="deleteFromToWatch('<%= film._id %>')">
                             <img src="/images/icons/saved.webp" alt="" srcset="">
@@ -63,11 +63,36 @@
 
             }%>
             <div class="comments">
-                <p>Comment</p>
-                <form action="">
-                    <textarea name="text" id="" cols="30" rows="10"></textarea>
-                    <button>Сохранить</button>
+                <h3>Комментарий</h3>
+                <% if(user && user._id) {%>
+                <form  class="add-comment-form" onsubmit="sendRate(event)">
+                    <p>Оцените фильм</p>
+                    <div class="comment-stars">
+                        <img onclick="rateFilm(1)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(2)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(3)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(4)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(5)" src="/images/icons/star.svg" alt="">
+                    </div>
+                    <p>Напишите комментарий</p>
+
+                    
+
+                    
+                    <textarea  id="comment-text" cols="30" rows="10"></textarea>
+                    <input type="hidden" value="<%= user._id  %>" id="comment-author">
+                    <input type="hidden" value="<%= film._id  %>" id="comment-film">
+
+                    <button type="submit">Сохранить</button>
                 </form>
+                <% }else { %>
+                    <p>
+                        <a href="/login">Войдите</a>
+                        или
+                        <a href="/register">зарегистрируйтесь</a>,
+                        чтобы оставить комментарий
+                    </p>
+                <% } %>    
             </div>
             
         </div>
