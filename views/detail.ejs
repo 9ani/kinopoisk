@@ -52,6 +52,10 @@
                         <p>Время</p>
                         <p><%= film.time %> мин</p>
                     </div>
+                    <div class="film-details">
+                        <p>Рейтинг</p>
+                        <p><%= averageRate %></p>
+                    </div>
                 </div>
             </div>
             <% if(film.video){
@@ -92,7 +96,40 @@
                         <a href="/register">зарегистрируйтесь</a>,
                         чтобы оставить комментарий
                     </p>
-                <% } %>    
+                <% } %> 
+                <% 
+                    if(rates){ 
+                        rates.forEach(rate =>{
+
+                        
+                %>
+                            <div class="comment">
+                                <p>Автор: <a href=""><%= rate.authorId.full_name %></a></p>
+                                <div class="comment-stars">
+                                    <% 
+                                    for(let i =0; i < 5; i++ ){
+                                        if(i < rate.rate){
+                                    %>
+                                    
+                                            <img  class="active-star"  src="/images/icons/star.svg" alt="">
+                                    <%
+                                        }else{
+                                    %>
+                                            <img  src="/images/icons/star.svg" alt="">
+                                    <%
+                                        }
+                                    }
+                                    %>
+ 
+                                </div>
+                                <% if(rate.text.length > 0){%>
+                                    <p>Комментарий: <%= rate.text %></p>
+                                <% } %>
+                            </div>
+                <% 
+                        })
+                    } 
+                %>
             </div>
             
         </div>

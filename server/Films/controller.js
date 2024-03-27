@@ -64,7 +64,7 @@ const editFilm = async (req, res)=>{
             video: req.body.video,
             image: `/images/films/${req.file.filename}`,
             author: req.user._id
-        }, { new: true });  // Use { new: true } to return the updated document
+        }, { new: true }); 
         
         res.redirect('/admin/' + req.user._id)
 
