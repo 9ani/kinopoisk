@@ -6,11 +6,17 @@ function addSeries(){
     addFilmUrlBtn.style.display = 'none'
     let output = urls.innerHTML
     let number = document.querySelectorAll('.series')
-    output += `<div class="series">
-    <p>${number.length + 1} серия</p>
-    <input type="text" placeholder="Введите ссылку на серию">
-</div>`
-    urls.innerHTML = output
+    let series = document.createElement('div')
+    series.classList.add("series")
+    let title = document.createElement('p')
+    let input = document.createElement('input')
+    title.innerHTML = number.length +1 + 'серия'
+    input.name = "series"
+    input.placeholder = "Введите ссылку на серию"
+    series.append(title)
+    series.append(input)
+
+    urls.append(series)
 }
 
 function addFilmUrl(){
